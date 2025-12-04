@@ -197,6 +197,61 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        .upload-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 1rem;
+        }
+        
+        .upload-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .image-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .image-name {
+            padding: 0.5rem;
+            background: white;
+            font-size: 0.9rem;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -221,6 +276,14 @@
             <h2>What is AI Image Detection?</h2>
             <p>AI (Artificial Intelligence) Image Detection is like teaching a computer to "see" and recognize things in pictures, just like you can recognize your friends in a photo! We train computers to look at thousands of drone photos and spot patterns, shapes, and colors that might show where ancient sites are hidden.</p>
             <p>The cool thing about AI is that it can look at hundreds of photos in minutes, finding things that would take humans days or weeks to spot. It never gets tired, never blinks, and can see tiny differences in color and texture that our eyes might miss!</p>
+        </div>
+        
+        <div class="upload-section">
+            <h2>📸 Try It Out - Upload Your Images</h2>
+            <p>Select multiple images from your folder to see how AI can analyze them!</p>
+            <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
+            <button id="uploadBtn" class="upload-btn">Choose Images</button>
+            <div id="imageGallery" class="image-gallery"></div>
         </div>
         
         <div class="info-box">
@@ -323,5 +386,47 @@
     <footer>
         <p>&copy; 2025 Wings of Discovery | A Project Built by Kids | Making Archaeology Better with Technology</p>
     </footer>
+    
+    <script>
+        const uploadBtn = document.getElementById('uploadBtn');
+        const imageUpload = document.getElementById('imageUpload');
+        const imageGallery = document.getElementById('imageGallery');
+        
+        uploadBtn.addEventListener('click', () => {
+            imageUpload.click();
+        });
+        
+        imageUpload.addEventListener('change', (event) => {
+            const files = event.target.files;
+            imageGallery.innerHTML = '';
+            
+            if (files.length > 0) {
+                Array.from(files).forEach(file => {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = (e) => {
+                            const imageItem = document.createElement('div');
+                            imageItem.className = 'image-item';
+                            
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.alt = file.name;
+                            
+                            const imageName = document.createElement('div');
+                            imageName.className = 'image-name';
+                            imageName.textContent = file.name;
+                            
+                            imageItem.appendChild(img);
+                            imageItem.appendChild(imageName);
+                            imageGallery.appendChild(imageItem);
+                        };
+                        
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
