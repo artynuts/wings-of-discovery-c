@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Detection - Wings of Discovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .content-section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin: 2rem 0;
+        }
+        
+        .info-box h3 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+        
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .process-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .process-step {
+            background: white;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .process-step h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .comparison-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .old-way {
+            background: #ffe5e5;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .new-way {
+            background: #e5ffe5;
+            border: 2px solid #51cf66;
+        }
+        
+        .comparison-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🦅 Wings of Discovery</div>
+            <ul>
+                <li><a href="index.html">About Us</a></li>
+                <li><a href="drone-mapping.html">Drone Mapping</a></li>
+                <li><a href="ai-detection.html" class="active">AI Detection</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="hero">
+        <h1>🤖 AI Image Detection</h1>
+        <p>Teaching computers to spot ancient treasures</p>
+    </div>
+    
+    <div class="container">
+        <div class="content-section">
+            <h2>What is AI Image Detection?</h2>
+            <p>AI (Artificial Intelligence) Image Detection is like teaching a computer to "see" and recognize things in pictures, just like you can recognize your friends in a photo! We train computers to look at thousands of drone photos and spot patterns, shapes, and colors that might show where ancient sites are hidden.</p>
+            <p>The cool thing about AI is that it can look at hundreds of photos in minutes, finding things that would take humans days or weeks to spot. It never gets tired, never blinks, and can see tiny differences in color and texture that our eyes might miss!</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>🧠 How Does the AI Learn?</h3>
+            <p>We show the AI thousands of examples of archaeological sites and teach it what to look for: unusual patterns in fields, changes in soil color, circular shapes that might be ancient buildings, and more. The more examples it sees, the smarter it gets!</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>What Can AI Detect?</h2>
+            <div class="ai-features">
+                <div class="feature-card">
+                    <div class="emoji">🏛️</div>
+                    <h3>Ancient Structures</h3>
+                    <p>Buried buildings, walls, and foundations that create patterns in crops and soil</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">🛤️</div>
+                    <h3>Old Roads & Paths</h3>
+                    <p>Ancient routes that show up as lines where plants grow differently</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">🎨</div>
+                    <h3>Soil Variations</h3>
+                    <p>Changes in soil color that indicate human activity from long ago</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">🌾</div>
+                    <h3>Crop Marks</h3>
+                    <p>Patterns where crops grow taller or shorter due to buried archaeology</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="process-section">
+            <h2 style="color: #667eea; margin-bottom: 2rem; text-align: center;">How Our AI Works</h2>
+            
+            <div class="process-step">
+                <h3>📥 Step 1: Collect Images</h3>
+                <p>We gather thousands of drone photos from archaeological sites around the world.</p>
+            </div>
+            
+            <div class="process-step">
+                <h3>🏷️ Step 2: Label the Data</h3>
+                <p>We mark where archaeological features are in the photos to teach the AI what to look for.</p>
+            </div>
+            
+            <div class="process-step">
+                <h3>🎓 Step 3: Train the Model</h3>
+                <p>The AI studies all the labeled photos and learns to recognize patterns on its own.</p>
+            </div>
+            
+            <div class="process-step">
+                <h3>🔍 Step 4: Test and Improve</h3>
+                <p>We test the AI on new photos and make it better by showing it where it made mistakes.</p>
+            </div>
+            
+            <div class="process-step">
+                <h3>🚀 Step 5: Deploy in the Field</h3>
+                <p>Now the AI is ready to analyze new drone images and help archaeologists find sites!</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>Old Way vs. New Way</h2>
+            <div class="comparison-box">
+                <div class="comparison-card old-way">
+                    <h3>👴 Without AI</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Look at each photo one by one</li>
+                        <li>Takes many hours or days</li>
+                        <li>Easy to miss small details</li>
+                        <li>Human eyes get tired</li>
+                        <li>Need expert archaeologists for every photo</li>
+                    </ul>
+                </div>
+                <div class="comparison-card new-way">
+                    <h3>🤖 With AI</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Analyze thousands of photos automatically</li>
+                        <li>Takes just minutes</li>
+                        <li>Spots tiny details humans might miss</li>
+                        <li>Never gets tired or distracted</li>
+                        <li>Highlights interesting areas for experts to review</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-box" style="margin-top: 2rem;">
+            <h3>🌟 The Future is Exciting!</h3>
+            <p>As AI gets smarter and we teach it more, it will become even better at helping archaeologists. Maybe one day, AI will help discover ancient civilizations that we never knew existed! And the best part? Kids like us are learning to build and train these AI systems right now!</p>
+        </div>
+        
+        <div class="info-box" style="border-left-color: #51cf66;">
+            <h3>💡 Did You Know?</h3>
+            <p>AI has already helped discover thousands of ancient sites in places like Egypt, Peru, and England. Some of these discoveries were completely hidden to the human eye but showed up clearly when AI analyzed the drone images!</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Wings of Discovery | A Project Built by Kids | Making Archaeology Better with Technology</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Mapping - Wings of Discovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .active {
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .content-section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            margin: 2rem 0;
+        }
+        
+        .info-box h3 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .benefit-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .steps-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: start;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🦅 Wings of Discovery</div>
+            <ul>
+                <li><a href="index.html">About Us</a></li>
+                <li><a href="drone-mapping.html" class="active">Drone Mapping</a></li>
+                <li><a href="ai-detection.html">AI Detection</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="hero">
+        <h1>🚁 Drone Mapping</h1>
+        <p>Flying high to see what's hidden below</p>
+    </div>
+    
+    <div class="container">
+        <div class="content-section">
+            <h2>What is Drone Mapping?</h2>
+            <p>Drone mapping is when we use special flying robots (drones) to take hundreds of pictures of the ground from up in the sky. These pictures are then stitched together by computer software to create detailed maps and 3D models of large areas.</p>
+            <p>Instead of an archaeologist walking across a huge field for days, a drone can fly over it in just a few hours and capture everything from above! This is especially helpful because drones can see patterns and features that are hard to notice when you're walking on the ground.</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>🎯 Why Use Drones for Archaeology?</h3>
+            <p>Drones can spot things that are invisible from the ground! Ancient buildings, buried roads, and old field patterns often show up as different colors or shapes in the soil and plants. From above, these patterns become clear and easy to see!</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Benefits of Drone Mapping</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="emoji">⚡</div>
+                    <h3>Super Fast</h3>
+                    <p>Cover huge areas in hours instead of days or weeks of walking</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="emoji">💰</div>
+                    <h3>Saves Money</h3>
+                    <p>Less time in the field means lower costs for research projects</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="emoji">🔍</div>
+                    <h3>Better View</h3>
+                    <p>See patterns and features that are invisible from the ground</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="emoji">🌡️</div>
+                    <h3>All Weather Data</h3>
+                    <p>Drones can use special cameras that see heat and moisture</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="steps-section">
+            <h2 style="color: #667eea; margin-bottom: 2rem;">How Drone Mapping Works</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Plan the Flight</h3>
+                    <p>We program the drone's flight path on a computer, telling it exactly where to fly and how high to go.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Take Off and Capture</h3>
+                    <p>The drone flies automatically over the area, taking hundreds or thousands of overlapping photos.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Process the Images</h3>
+                    <p>Special software stitches all the photos together to create detailed maps and 3D models.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Analyze the Results</h3>
+                    <p>Archaeologists (and our AI!) study the maps to find interesting spots to investigate further.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-box" style="margin-top: 2rem;">
+            <h3>🌍 Real World Impact</h3>
+            <p>Drones have helped discover ancient Roman roads, medieval villages, and even prehistoric settlements that nobody knew existed! All without anyone having to walk across miles and miles of fields.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Wings of Discovery | A Project Built by Kids | Making Archaeology Better with Technology</p>
+    </footer>
+</body>
+</html>
