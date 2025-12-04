@@ -252,6 +252,45 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        
+        .prediction-results {
+            padding: 0.5rem;
+            background: #f0f0f0;
+            font-size: 0.85rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .prediction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+        }
+        
+        .class-name {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .confidence {
+            color: #764ba2;
+        }
+        
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
     </style>
 </head>
 <body>
@@ -283,6 +322,7 @@
             <p>Select multiple images from your folder to see how AI can analyze them!</p>
             <input type="file" id="imageUpload" accept="image/*" multiple style="display: none;">
             <button id="uploadBtn" class="upload-btn">Choose Images</button>
+            <div id="status" class="status-message"></div>
             <div id="imageGallery" class="image-gallery"></div>
         </div>
         
@@ -387,46 +427,123 @@
         <p>&copy; 2025 Wings of Discovery | A Project Built by Kids | Making Archaeology Better with Technology</p>
     </footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script>
+        const URL = "https://teachablemachine.withgoogle.com/models/M4fsMQXTv/";
+        let model, maxPredictions;
+        
         const uploadBtn = document.getElementById('uploadBtn');
         const imageUpload = document.getElementById('imageUpload');
         const imageGallery = document.getElementById('imageGallery');
+        const statusDiv = document.getElementById('status');
+        
+        // Load the model
+        async function loadModel() {
+            statusDiv.className = 'status-message loading';
+            statusDiv.textContent = '🤖 Loading AI model...';
+            
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+            
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+            
+            statusDiv.className = 'status-message success';
+            statusDiv.textContent = '✅ AI model loaded! Ready to analyze images.';
+            setTimeout(() => {
+                statusDiv.textContent = '';
+                statusDiv.className = '';
+            }, 3000);
+        }
+        
+        // Load model when page loads
+        loadModel();
         
         uploadBtn.addEventListener('click', () => {
             imageUpload.click();
         });
         
-        imageUpload.addEventListener('change', (event) => {
+        imageUpload.addEventListener('change', async (event) => {
             const files = event.target.files;
             imageGallery.innerHTML = '';
             
             if (files.length > 0) {
-                Array.from(files).forEach(file => {
+                statusDiv.className = 'status-message loading';
+                statusDiv.textContent = `🔍 Analyzing ${files.length} image(s)...`;
+                
+                for (let file of files) {
                     if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        
-                        reader.onload = (e) => {
-                            const imageItem = document.createElement('div');
-                            imageItem.className = 'image-item';
-                            
-                            const img = document.createElement('img');
-                            img.src = e.target.result;
-                            img.alt = file.name;
-                            
-                            const imageName = document.createElement('div');
-                            imageName.className = 'image-name';
-                            imageName.textContent = file.name;
-                            
-                            imageItem.appendChild(img);
-                            imageItem.appendChild(imageName);
-                            imageGallery.appendChild(imageItem);
-                        };
-                        
-                        reader.readAsDataURL(file);
+                        await processImage(file);
                     }
-                });
+                }
+                
+                statusDiv.className = 'status-message success';
+                statusDiv.textContent = '✅ Analysis complete!';
+                setTimeout(() => {
+                    statusDiv.textContent = '';
+                    statusDiv.className = '';
+                }, 3000);
             }
         });
+        
+        async function processImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                
+                reader.onload = async (e) => {
+                    const imageItem = document.createElement('div');
+                    imageItem.className = 'image-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = file.name;
+                    
+                    const imageName = document.createElement('div');
+                    imageName.className = 'image-name';
+                    imageName.textContent = file.name;
+                    
+                    imageItem.appendChild(img);
+                    imageItem.appendChild(imageName);
+                    
+                    // Wait for image to load before predicting
+                    img.onload = async () => {
+                        const prediction = await model.predict(img);
+                        
+                        // Sort predictions by probability
+                        prediction.sort((a, b) => b.probability - a.probability);
+                        
+                        // Display top 3 predictions
+                        const resultsDiv = document.createElement('div');
+                        resultsDiv.className = 'prediction-results';
+                        
+                        for (let i = 0; i < Math.min(3, prediction.length); i++) {
+                            const predItem = document.createElement('div');
+                            predItem.className = 'prediction-item';
+                            
+                            const className = document.createElement('span');
+                            className.className = 'class-name';
+                            className.textContent = prediction[i].className;
+                            
+                            const confidence = document.createElement('span');
+                            confidence.className = 'confidence';
+                            confidence.textContent = (prediction[i].probability * 100).toFixed(1) + '%';
+                            
+                            predItem.appendChild(className);
+                            predItem.appendChild(confidence);
+                            resultsDiv.appendChild(predItem);
+                        }
+                        
+                        imageItem.appendChild(resultsDiv);
+                        resolve();
+                    };
+                    
+                    imageGallery.appendChild(imageItem);
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
     </script>
 </body>
 </html>
